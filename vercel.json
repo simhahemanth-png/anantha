@@ -1,10 +1,5 @@
 {
   "version": 2,
-  "functions": {
-    "search.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
   "routes": [
     { "src": "/api/search", "dest": "/search.js" },
     { "src": "/(.*)", "dest": "/index.html" }
