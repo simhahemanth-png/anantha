@@ -7,476 +7,206 @@
 <meta name="description" content="Explore the heritage, history and culture of every city, town and village in India."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --sandstone: #C8A96E;
-  --deep-ochre: #A0622A;
-  --terracotta: #C1440E;
-  --night-sky: #1A1008;
-  --parchment: #F5EDD6;
-  --aged-paper: #EAD9B0;
-  --muted-gold: #D4A843;
-  --pale-gold: #F0D080;
-  --jade: #3A7A5A;
-}
-
-* { margin:0; padding:0; box-sizing:border-box; }
-
-body {
-  font-family: 'EB Garamond', Georgia, serif;
-  background: var(--night-sky);
-  color: var(--parchment);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-body::before {
-  content:'';
-  position:fixed; inset:0;
-  background-image:
-    repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(200,169,110,0.015) 2px,rgba(200,169,110,0.015) 4px),
-    repeating-linear-gradient(90deg,transparent,transparent 3px,rgba(200,169,110,0.01) 3px,rgba(200,169,110,0.01) 6px);
-  pointer-events:none; z-index:0;
-}
-
-/* ── HERO ── */
-#hero {
-  position:relative; min-height:100vh;
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center;
-  padding:2rem; z-index:1;
-}
-
-.hero-glow {
-  position:absolute; top:35%; left:50%;
-  transform:translate(-50%,-50%);
-  width:600px; height:300px;
-  background:radial-gradient(ellipse,rgba(200,169,110,0.12) 0%,transparent 70%);
-  pointer-events:none;
-}
-
-.hero-ornament {
-  font-family:'Cinzel',serif; font-size:13px;
-  letter-spacing:0.35em; color:var(--sandstone);
-  text-transform:uppercase; opacity:0.7;
-  margin-bottom:1rem;
-  animation:fadeDown 1s ease both;
-}
-
-.hero-title {
-  font-family:'Cinzel',serif;
-  font-size:clamp(52px,9vw,96px);
-  font-weight:700; color:var(--pale-gold);
-  letter-spacing:0.1em; text-align:center;
-  line-height:1;
-  text-shadow:0 0 60px rgba(212,168,67,0.45), 0 2px 0 rgba(0,0,0,0.5);
-  animation:fadeDown 1s ease 0.1s both;
-}
-
-.hero-meaning {
-  font-family:'EB Garamond',serif; font-style:italic;
-  font-size:13px; color:var(--sandstone); opacity:0.6;
-  letter-spacing:0.15em; margin-top:0.3rem;
-  animation:fadeDown 1s ease 0.15s both;
-}
-
-.hero-subtitle {
-  font-family:'EB Garamond',serif; font-style:italic;
-  font-size:18px; color:var(--aged-paper); opacity:0.6;
-  text-align:center; margin-top:0.5rem; letter-spacing:0.04em;
-  animation:fadeDown 1s ease 0.2s both;
-}
-
-.divider {
-  display:flex; align-items:center; gap:12px;
-  margin:2rem 0 1.8rem;
-  animation:fadeDown 1s ease 0.3s both;
-}
-.divider-line { height:1px; width:80px; background:linear-gradient(90deg,transparent,var(--sandstone)); }
-.divider-line.right { background:linear-gradient(90deg,var(--sandstone),transparent); }
-.divider-lotus { color:var(--sandstone); font-size:18px; }
-
-.search-container {
-  width:100%; max-width:560px; position:relative;
-  animation:fadeDown 1s ease 0.4s both;
-}
-
-.search-box {
-  width:100%; padding:16px 60px 16px 20px;
-  font-family:'EB Garamond',serif; font-size:18px;
-  background:rgba(234,217,176,0.08);
-  border:1px solid rgba(200,169,110,0.35); border-radius:4px;
-  color:var(--parchment); outline:none;
-  transition:border-color 0.2s,background 0.2s;
-  letter-spacing:0.02em;
-}
-.search-box::placeholder { color:rgba(245,237,214,0.35); }
-.search-box:focus { border-color:var(--sandstone); background:rgba(234,217,176,0.12); }
-
-.search-btn {
-  position:absolute; right:6px; top:50%; transform:translateY(-50%);
-  width:44px; height:44px; background:var(--deep-ochre);
-  border:none; border-radius:3px; cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  transition:background 0.2s;
-}
-.search-btn:hover { background:var(--terracotta); }
-.search-btn svg { width:18px; height:18px; }
-
-.quick-chips {
-  display:flex; flex-wrap:wrap; gap:8px;
-  justify-content:center; margin-top:1.2rem; max-width:560px;
-  animation:fadeDown 1s ease 0.5s both;
-}
-.q-chip {
-  font-family:'EB Garamond',serif; font-size:13px;
-  padding:5px 14px; border:1px solid rgba(200,169,110,0.3); border-radius:2px;
-  color:var(--sandstone); cursor:pointer;
-  background:rgba(200,169,110,0.05); transition:all 0.15s; letter-spacing:0.03em;
-}
-.q-chip:hover { background:rgba(200,169,110,0.15); border-color:var(--sandstone); color:var(--pale-gold); }
-
-@keyframes fadeDown {
-  from { opacity:0; transform:translateY(-16px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-
-/* Hampi silhouette */
-.hampi-bg {
-  position:absolute; bottom:0; left:0; right:0;
-  height:260px; overflow:hidden; pointer-events:none;
-}
-.hampi-bg svg { width:100%; height:100%; }
-
-/* ── LOADING ── */
-#loading-screen {
-  display:none; position:fixed; inset:0;
-  background:var(--night-sky); z-index:100;
-  align-items:center; justify-content:center;
-  flex-direction:column; gap:1.5rem;
-}
-.loading-mandala {
-  width:64px; height:64px;
-  border:2px solid rgba(200,169,110,0.15);
-  border-top-color:var(--sandstone);
-  border-radius:50%; animation:spin 0.9s linear infinite;
-}
-.loading-text {
-  font-family:'EB Garamond',serif; font-style:italic;
-  font-size:17px; color:var(--sandstone);
-  letter-spacing:0.05em; opacity:0.8;
-}
-@keyframes spin { to { transform:rotate(360deg); } }
-
-/* ── RESULTS ── */
-#results-page { display:none; min-height:100vh; position:relative; z-index:1; padding-bottom:4rem; }
-
-.results-nav {
-  display:flex; align-items:center; justify-content:space-between;
-  padding:1.1rem 2rem; border-bottom:1px solid rgba(200,169,110,0.15);
-  position:sticky; top:0;
-  background:rgba(26,16,8,0.96); backdrop-filter:blur(6px); z-index:50;
-}
-.nav-logo {
-  font-family:'Cinzel',serif; font-size:20px; font-weight:700;
-  color:var(--pale-gold); letter-spacing:0.12em; cursor:pointer;
-}
-.nav-tagline {
-  font-family:'EB Garamond',serif; font-style:italic;
-  font-size:12px; color:var(--sandstone); opacity:0.5;
-  letter-spacing:0.08em; margin-top:2px;
-}
-.nav-actions { display:flex; gap:10px; align-items:center; }
-.nav-search-mini { display:flex; gap:8px; }
-.nav-search-mini input {
-  padding:7px 14px; font-family:'EB Garamond',serif; font-size:15px;
-  background:rgba(200,169,110,0.08);
-  border:1px solid rgba(200,169,110,0.25); border-radius:3px;
-  color:var(--parchment); outline:none; width:200px;
-}
-.nav-search-mini input:focus { border-color:var(--sandstone); }
-.nav-search-mini input::placeholder { color:rgba(245,237,214,0.3); }
-
-.btn-ghost {
-  padding:7px 16px; font-family:'Cinzel',serif; font-size:11px;
-  letter-spacing:0.08em; background:transparent;
-  border:1px solid rgba(200,169,110,0.35); border-radius:3px;
-  color:var(--sandstone); cursor:pointer; transition:all 0.15s; white-space:nowrap;
-}
-.btn-ghost:hover { background:rgba(200,169,110,0.1); border-color:var(--sandstone); color:var(--pale-gold); }
-
-.btn-solid {
-  padding:7px 16px; font-family:'Cinzel',serif; font-size:11px;
-  letter-spacing:0.08em; background:var(--deep-ochre);
-  border:1px solid var(--deep-ochre); border-radius:3px;
-  color:var(--pale-gold); cursor:pointer; transition:all 0.15s; white-space:nowrap;
-}
-.btn-solid:hover { background:var(--terracotta); border-color:var(--terracotta); }
-
-.city-banner {
-  position:relative; padding:3.5rem 2rem 3rem;
-  text-align:center; overflow:hidden;
-}
-.city-banner::before {
-  content:''; position:absolute; inset:0;
-  background:radial-gradient(ellipse at 50% 60%,rgba(160,98,42,0.2) 0%,transparent 70%);
-}
-.city-banner-ornament {
-  font-family:'Cinzel',serif; font-size:11px;
-  letter-spacing:0.4em; color:var(--sandstone);
-  text-transform:uppercase; opacity:0.65; margin-bottom:0.8rem;
-}
-.city-banner h1 {
-  font-family:'Cinzel',serif;
-  font-size:clamp(36px,6vw,64px); font-weight:700;
-  color:var(--pale-gold); letter-spacing:0.06em;
-  text-shadow:0 0 40px rgba(212,168,67,0.35); line-height:1.1; position:relative;
-}
-.meta-badges {
-  display:flex; gap:10px; justify-content:center;
-  flex-wrap:wrap; margin-top:1rem; position:relative;
-}
-.mbadge {
-  font-family:'EB Garamond',serif; font-size:13px;
-  padding:4px 14px; border:1px solid rgba(200,169,110,0.3); border-radius:2px;
-  color:var(--aged-paper); background:rgba(200,169,110,0.08); letter-spacing:0.04em;
-}
-.mbadge.state { border-color:rgba(193,68,14,0.5); color:#E8A080; background:rgba(193,68,14,0.1); }
-.mbadge.district { border-color:rgba(212,168,67,0.4); color:var(--sandstone); background:rgba(212,168,67,0.07); }
-
-.content-wrap { max-width:1100px; margin:0 auto; padding:0 2rem; }
-
-.city-desc-block {
-  border-left:2px solid var(--deep-ochre); padding:1rem 1.5rem;
-  margin:0 0 2.5rem; background:rgba(160,98,42,0.07);
-  border-radius:0 3px 3px 0;
-}
-.city-desc-block p { font-size:17px; line-height:1.8; color:var(--aged-paper); font-style:italic; }
-
-.section-title {
-  font-family:'Cinzel',serif; font-size:13px; letter-spacing:0.3em;
-  color:var(--sandstone); text-transform:uppercase;
-  margin-bottom:1.2rem; padding-bottom:0.6rem;
-  border-bottom:1px solid rgba(200,169,110,0.2);
-  display:flex; align-items:center; gap:10px;
-}
-.section-title::before {
-  content:''; display:inline-block; width:24px; height:1px;
-  background:var(--deep-ochre);
-}
-
-.info-grid {
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:12px; margin-bottom:2.5rem;
-}
-.info-tile {
-  background:rgba(234,217,176,0.04);
-  border:1px solid rgba(200,169,110,0.15); border-radius:3px;
-  padding:1.1rem 1.25rem;
-}
-.info-tile .tile-label {
-  font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.25em;
-  color:var(--sandstone); text-transform:uppercase; opacity:0.7; margin-bottom:6px;
-}
-.info-tile .tile-value { font-size:15px; color:var(--parchment); line-height:1.5; }
-
-.heritage-section { margin-bottom:3rem; }
-.heritage-list { display:flex; flex-direction:column; gap:14px; }
-
-.heritage-card {
-  display:grid; grid-template-columns:56px 1fr auto; gap:0;
-  background:rgba(234,217,176,0.03);
-  border:1px solid rgba(200,169,110,0.15); border-radius:3px;
-  overflow:hidden; transition:border-color 0.2s,background 0.2s;
-}
-.heritage-card:hover { border-color:rgba(200,169,110,0.35); background:rgba(234,217,176,0.06); }
-
-.heritage-rank {
-  background:rgba(160,98,42,0.25);
-  border-right:1px solid rgba(200,169,110,0.15);
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center;
-  padding:1rem 0.6rem; gap:4px;
-}
-.rank-num { font-family:'Cinzel',serif; font-size:20px; font-weight:600; color:var(--muted-gold); line-height:1; }
-.rank-dist { font-size:10px; color:var(--sandstone); opacity:0.7; text-align:center; line-height:1.3; }
-
-.heritage-body { padding:1rem 1.25rem; flex:1; }
-.heritage-name { font-family:'Cinzel',serif; font-size:15px; font-weight:600; color:var(--pale-gold); margin-bottom:4px; letter-spacing:0.03em; }
-
-.heritage-type-row { display:flex; gap:8px; align-items:center; margin-bottom:8px; flex-wrap:wrap; }
-.htype-tag {
-  font-size:11px; padding:2px 10px; border-radius:2px;
-  background:rgba(193,68,14,0.15); border:1px solid rgba(193,68,14,0.3); color:#E8A080; letter-spacing:0.03em;
-}
-.hera-tag {
-  font-size:11px; padding:2px 10px; border-radius:2px;
-  background:rgba(212,168,67,0.1); border:1px solid rgba(212,168,67,0.25); color:var(--sandstone); letter-spacing:0.03em;
-}
-.heritage-desc { font-size:14px; line-height:1.7; color:rgba(234,217,176,0.7); }
-.heritage-significance {
-  margin-top:8px; padding:8px 12px;
-  background:rgba(58,122,90,0.1); border-left:2px solid rgba(58,122,90,0.5); border-radius:0 2px 2px 0;
-}
-.heritage-significance p { font-size:13px; font-style:italic; color:rgba(200,230,210,0.75); line-height:1.6; }
-
-.heritage-action {
-  padding:1rem; display:flex; flex-direction:column;
-  align-items:flex-end; justify-content:flex-start; gap:8px;
-  min-width:120px; border-left:1px solid rgba(200,169,110,0.1);
-}
-.hmap-btn, .hwiki-btn {
-  font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.1em;
-  padding:5px 12px; border-radius:2px; cursor:pointer;
-  transition:all 0.15s; white-space:nowrap;
-}
-.hmap-btn { background:transparent; border:1px solid rgba(200,169,110,0.3); color:var(--sandstone); }
-.hmap-btn:hover { background:rgba(200,169,110,0.1); border-color:var(--sandstone); color:var(--pale-gold); }
-.hwiki-btn { background:rgba(160,98,42,0.2); border:1px solid rgba(160,98,42,0.4); color:#E8C090; }
-.hwiki-btn:hover { background:rgba(160,98,42,0.35); color:var(--pale-gold); }
-
-.cards-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-bottom:2.5rem; }
-.dcard { background:rgba(234,217,176,0.03); border:1px solid rgba(200,169,110,0.15); border-radius:3px; padding:1.25rem; }
-.dcard ul { list-style:none; display:flex; flex-direction:column; gap:7px; margin-top:0.8rem; }
-.dcard ul li { font-size:14px; color:rgba(234,217,176,0.7); padding-left:14px; position:relative; line-height:1.5; }
-.dcard ul li::before { content:'◆'; position:absolute; left:0; font-size:5px; color:var(--deep-ochre); top:6px; }
-.dcard p { font-size:14px; line-height:1.7; color:rgba(234,217,176,0.7); margin-top:0.8rem; }
-
-.connectivity-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:0.8rem; }
-.conn-tag { font-size:12px; padding:4px 12px; border:1px solid rgba(200,169,110,0.2); border-radius:2px; color:var(--sandstone); background:rgba(200,169,110,0.05); }
-
-.err-box {
-  max-width:500px; margin:4rem auto; text-align:center;
-  padding:2rem; border:1px solid rgba(193,68,14,0.3); border-radius:4px;
-  background:rgba(193,68,14,0.07);
-}
-.err-box h3 { font-family:'Cinzel',serif; color:#E8A080; margin-bottom:0.8rem; }
-.err-box p { font-size:15px; color:rgba(234,217,176,0.65); line-height:1.6; }
-
-.footer {
-  text-align:center; padding:2rem; margin-top:2rem;
-  border-top:1px solid rgba(200,169,110,0.1);
-  font-family:'EB Garamond',serif; font-style:italic;
-  font-size:13px; color:rgba(200,169,110,0.35); letter-spacing:0.05em;
-}
-
-@media (max-width:640px) {
-  .heritage-card { grid-template-columns:44px 1fr; }
-  .heritage-action { display:none; }
-  .nav-search-mini input { width:130px; }
-  .content-wrap { padding:0 1rem; }
-}
+:root{--sandstone:#C8A96E;--deep-ochre:#A0622A;--terracotta:#C1440E;--night-sky:#1A1008;--parchment:#F5EDD6;--aged-paper:#EAD9B0;--muted-gold:#D4A843;--pale-gold:#F0D080;--jade:#3A7A5A;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'EB Garamond',Georgia,serif;background:var(--night-sky);color:var(--parchment);min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(200,169,110,0.015) 2px,rgba(200,169,110,0.015) 4px),repeating-linear-gradient(90deg,transparent,transparent 3px,rgba(200,169,110,0.01) 3px,rgba(200,169,110,0.01) 6px);pointer-events:none;z-index:0;}
+#hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;z-index:1;}
+.hero-glow{position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(200,169,110,0.12) 0%,transparent 70%);pointer-events:none;}
+.hero-ornament{font-family:'Cinzel',serif;font-size:13px;letter-spacing:0.35em;color:var(--sandstone);text-transform:uppercase;opacity:0.7;margin-bottom:1rem;animation:fadeDown 1s ease both;}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(52px,9vw,96px);font-weight:700;color:var(--pale-gold);letter-spacing:0.1em;text-align:center;line-height:1;text-shadow:0 0 60px rgba(212,168,67,0.45),0 2px 0 rgba(0,0,0,0.5);animation:fadeDown 1s ease 0.1s both;}
+.hero-meaning{font-family:'EB Garamond',serif;font-style:italic;font-size:13px;color:var(--sandstone);opacity:0.6;letter-spacing:0.15em;margin-top:0.3rem;animation:fadeDown 1s ease 0.15s both;}
+.hero-subtitle{font-style:italic;font-size:18px;color:var(--aged-paper);opacity:0.6;text-align:center;margin-top:0.5rem;letter-spacing:0.04em;animation:fadeDown 1s ease 0.2s both;}
+.divider{display:flex;align-items:center;gap:12px;margin:2rem 0 1.8rem;animation:fadeDown 1s ease 0.3s both;}
+.divider-line{height:1px;width:80px;background:linear-gradient(90deg,transparent,var(--sandstone));}
+.divider-line.right{background:linear-gradient(90deg,var(--sandstone),transparent);}
+.search-container{width:100%;max-width:560px;position:relative;animation:fadeDown 1s ease 0.4s both;}
+.search-box{width:100%;padding:16px 60px 16px 20px;font-family:'EB Garamond',serif;font-size:18px;background:rgba(234,217,176,0.08);border:1px solid rgba(200,169,110,0.35);border-radius:4px;color:var(--parchment);outline:none;transition:border-color 0.2s;letter-spacing:0.02em;}
+.search-box::placeholder{color:rgba(245,237,214,0.35);}
+.search-box:focus{border-color:var(--sandstone);}
+.search-btn{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:44px;height:44px;background:var(--deep-ochre);border:none;border-radius:3px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.search-btn:hover{background:var(--terracotta);}
+.search-btn svg{width:18px;height:18px;}
+.quick-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:1.2rem;max-width:560px;animation:fadeDown 1s ease 0.5s both;}
+.q-chip{font-family:'EB Garamond',serif;font-size:13px;padding:5px 14px;border:1px solid rgba(200,169,110,0.3);border-radius:2px;color:var(--sandstone);cursor:pointer;background:rgba(200,169,110,0.05);transition:all 0.15s;}
+.q-chip:hover{background:rgba(200,169,110,0.15);border-color:var(--sandstone);color:var(--pale-gold);}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:translateY(0);}}
+.hampi-bg{position:absolute;bottom:0;left:0;right:0;height:260px;overflow:hidden;pointer-events:none;}
+.hampi-bg svg{width:100%;height:100%;}
+#loading-screen{display:none;position:fixed;inset:0;background:var(--night-sky);z-index:100;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;}
+.loading-mandala{width:64px;height:64px;border:2px solid rgba(200,169,110,0.15);border-top-color:var(--sandstone);border-radius:50%;animation:spin 0.9s linear infinite;}
+.loading-text{font-style:italic;font-size:17px;color:var(--sandstone);letter-spacing:0.05em;opacity:0.8;}
+@keyframes spin{to{transform:rotate(360deg);}}
+#results-page{display:none;min-height:100vh;position:relative;z-index:1;padding-bottom:4rem;}
+.results-nav{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 2rem;border-bottom:1px solid rgba(200,169,110,0.15);position:sticky;top:0;background:rgba(26,16,8,0.96);backdrop-filter:blur(6px);z-index:50;}
+.nav-logo{font-family:'Cinzel',serif;font-size:20px;font-weight:700;color:var(--pale-gold);letter-spacing:0.12em;cursor:pointer;}
+.nav-tagline{font-style:italic;font-size:12px;color:var(--sandstone);opacity:0.5;letter-spacing:0.08em;margin-top:2px;}
+.nav-actions{display:flex;gap:10px;align-items:center;}
+.nav-search-mini{display:flex;gap:8px;}
+.nav-search-mini input{padding:7px 14px;font-family:'EB Garamond',serif;font-size:15px;background:rgba(200,169,110,0.08);border:1px solid rgba(200,169,110,0.25);border-radius:3px;color:var(--parchment);outline:none;width:200px;}
+.nav-search-mini input:focus{border-color:var(--sandstone);}
+.nav-search-mini input::placeholder{color:rgba(245,237,214,0.3);}
+.btn-ghost{padding:7px 16px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;background:transparent;border:1px solid rgba(200,169,110,0.35);border-radius:3px;color:var(--sandstone);cursor:pointer;transition:all 0.15s;white-space:nowrap;}
+.btn-ghost:hover{background:rgba(200,169,110,0.1);border-color:var(--sandstone);color:var(--pale-gold);}
+.city-banner{position:relative;padding:3.5rem 2rem 3rem;text-align:center;overflow:hidden;}
+.city-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(160,98,42,0.2) 0%,transparent 70%);}
+.city-banner-ornament{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.4em;color:var(--sandstone);text-transform:uppercase;opacity:0.65;margin-bottom:0.8rem;}
+.city-banner h1{font-family:'Cinzel',serif;font-size:clamp(36px,6vw,64px);font-weight:700;color:var(--pale-gold);letter-spacing:0.06em;text-shadow:0 0 40px rgba(212,168,67,0.35);line-height:1.1;position:relative;}
+.sanskrit-name{font-family:'Noto Serif Devanagari',serif;font-size:clamp(20px,3.5vw,34px);font-weight:600;color:rgba(212,168,67,0.65);letter-spacing:0.06em;margin-top:0.5rem;position:relative;}
+.meta-badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:1rem;position:relative;}
+.mbadge{font-size:13px;padding:4px 14px;border:1px solid rgba(200,169,110,0.3);border-radius:2px;color:var(--aged-paper);background:rgba(200,169,110,0.08);}
+.mbadge.state{border-color:rgba(193,68,14,0.5);color:#E8A080;background:rgba(193,68,14,0.1);}
+.mbadge.district{border-color:rgba(212,168,67,0.4);color:var(--sandstone);}
+.action-bar{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:1.5rem 2rem;border-bottom:1px solid rgba(200,169,110,0.1);background:rgba(26,16,8,0.4);}
+.act-btn{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.12em;padding:10px 20px;border:1px solid rgba(200,169,110,0.3);border-radius:3px;color:var(--sandstone);background:rgba(200,169,110,0.05);cursor:pointer;transition:all 0.2s;text-transform:uppercase;}
+.act-btn:hover{background:rgba(200,169,110,0.12);border-color:var(--sandstone);color:var(--pale-gold);}
+.act-btn.active{background:rgba(160,98,42,0.25);border-color:var(--muted-gold);color:var(--pale-gold);}
+.act-btn.purana-btn{background:linear-gradient(135deg,rgba(139,26,26,0.2),rgba(160,98,42,0.2));border-color:rgba(212,168,67,0.5);color:var(--muted-gold);position:relative;overflow:hidden;}
+.act-btn.purana-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(212,168,67,0.1),transparent);animation:shimmer 2.5s infinite;}
+@keyframes shimmer{0%{transform:translateX(-100%);}100%{transform:translateX(100%);}}
+.act-btn.karya-btn{background:linear-gradient(135deg,rgba(58,122,90,0.15),rgba(26,16,8,0.3));border-color:rgba(58,122,90,0.5);color:#9FD4B8;}
+.act-btn.karya-btn:hover{background:rgba(58,122,90,0.2);color:#C8F0DC;}
+.content-wrap{max-width:1100px;margin:0 auto;padding:0 2rem;}
+.city-desc-block{border-left:2px solid var(--deep-ochre);padding:1rem 1.5rem;margin:0 0 2.5rem;background:rgba(160,98,42,0.07);}
+.city-desc-block p{font-size:17px;line-height:1.8;color:var(--aged-paper);font-style:italic;}
+.section-title{font-family:'Cinzel',serif;font-size:13px;letter-spacing:0.3em;color:var(--sandstone);text-transform:uppercase;margin-bottom:1.2rem;padding-bottom:0.6rem;border-bottom:1px solid rgba(200,169,110,0.2);display:flex;align-items:center;gap:10px;}
+.section-title::before{content:'';display:inline-block;width:24px;height:1px;background:var(--deep-ochre);}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:2.5rem;}
+.info-tile{background:rgba(234,217,176,0.04);border:1px solid rgba(200,169,110,0.15);border-radius:3px;padding:1.1rem 1.25rem;}
+.info-tile .tile-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.25em;color:var(--sandstone);text-transform:uppercase;opacity:0.7;margin-bottom:6px;}
+.info-tile .tile-value{font-size:15px;color:var(--parchment);line-height:1.5;}
+.heritage-section{margin-bottom:3rem;}
+.heritage-list{display:flex;flex-direction:column;gap:14px;}
+.heritage-card{display:grid;grid-template-columns:56px 1fr auto;background:rgba(234,217,176,0.03);border:1px solid rgba(200,169,110,0.15);border-radius:3px;overflow:hidden;transition:border-color 0.2s,background 0.2s;}
+.heritage-card:hover{border-color:rgba(200,169,110,0.35);background:rgba(234,217,176,0.06);}
+.heritage-rank{background:rgba(160,98,42,0.25);border-right:1px solid rgba(200,169,110,0.15);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem 0.6rem;gap:4px;}
+.rank-num{font-family:'Cinzel',serif;font-size:20px;font-weight:600;color:var(--muted-gold);line-height:1;}
+.rank-dist{font-size:10px;color:var(--sandstone);opacity:0.7;text-align:center;line-height:1.3;}
+.heritage-body{padding:1rem 1.25rem;flex:1;}
+.heritage-name{font-family:'Cinzel',serif;font-size:15px;font-weight:600;color:var(--pale-gold);margin-bottom:4px;}
+.heritage-type-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap;}
+.htype-tag{font-size:11px;padding:2px 10px;border-radius:2px;background:rgba(193,68,14,0.15);border:1px solid rgba(193,68,14,0.3);color:#E8A080;}
+.hera-tag{font-size:11px;padding:2px 10px;border-radius:2px;background:rgba(212,168,67,0.1);border:1px solid rgba(212,168,67,0.25);color:var(--sandstone);}
+.heritage-desc{font-size:14px;line-height:1.7;color:rgba(234,217,176,0.7);}
+.heritage-significance{margin-top:8px;padding:8px 12px;background:rgba(58,122,90,0.1);border-left:2px solid rgba(58,122,90,0.5);}
+.heritage-significance p{font-size:13px;font-style:italic;color:rgba(200,230,210,0.75);line-height:1.6;}
+.heritage-action{padding:1rem;display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-start;gap:8px;min-width:120px;border-left:1px solid rgba(200,169,110,0.1);}
+.hmap-btn,.hwiki-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.1em;padding:5px 12px;border-radius:2px;cursor:pointer;transition:all 0.15s;white-space:nowrap;}
+.hmap-btn{background:transparent;border:1px solid rgba(200,169,110,0.3);color:var(--sandstone);}
+.hmap-btn:hover{background:rgba(200,169,110,0.1);color:var(--pale-gold);}
+.hwiki-btn{background:rgba(160,98,42,0.2);border:1px solid rgba(160,98,42,0.4);color:#E8C090;}
+.hwiki-btn:hover{background:rgba(160,98,42,0.35);color:var(--pale-gold);}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:2.5rem;}
+.dcard{background:rgba(234,217,176,0.03);border:1px solid rgba(200,169,110,0.15);border-radius:3px;padding:1.25rem;}
+.dcard ul{list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:0.8rem;}
+.dcard ul li{font-size:14px;color:rgba(234,217,176,0.7);padding-left:14px;position:relative;line-height:1.5;}
+.dcard ul li::before{content:'◆';position:absolute;left:0;font-size:5px;color:var(--deep-ochre);top:6px;}
+.dcard p{font-size:14px;line-height:1.7;color:rgba(234,217,176,0.7);margin-top:0.8rem;}
+.connectivity-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:0.8rem;}
+.conn-tag{font-size:12px;padding:4px 12px;border:1px solid rgba(200,169,110,0.2);border-radius:2px;color:var(--sandstone);background:rgba(200,169,110,0.05);}
+#dynamic-panel{margin-top:1.5rem;}
+.panel-loading{text-align:center;padding:2.5rem;color:var(--sandstone);font-style:italic;font-size:15px;}
+.panel-spinner{width:36px;height:36px;border:2px solid rgba(200,169,110,0.15);border-top-color:var(--sandstone);border-radius:50%;animation:spin 0.9s linear infinite;margin:0 auto 0.8rem;}
+.listing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:1.5rem;}
+.listing-card{background:rgba(234,217,176,0.04);border:1px solid rgba(200,169,110,0.15);border-radius:3px;padding:1.1rem 1.25rem;transition:border-color 0.2s;}
+.listing-card:hover{border-color:rgba(200,169,110,0.3);}
+.listing-name{font-family:'Cinzel',serif;font-size:14px;font-weight:600;color:var(--pale-gold);margin-bottom:5px;}
+.listing-stars{color:var(--muted-gold);font-size:13px;margin-bottom:5px;}
+.listing-detail{font-size:13px;color:rgba(234,217,176,0.65);line-height:1.5;margin-bottom:6px;}
+.listing-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;}
+.listing-tag{font-size:11px;padding:2px 8px;border:1px solid rgba(200,169,110,0.2);border-radius:2px;color:var(--sandstone);background:rgba(200,169,110,0.05);}
+.listing-map-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.08em;padding:5px 12px;background:rgba(160,98,42,0.2);border:1px solid rgba(160,98,42,0.4);border-radius:2px;color:#E8C090;cursor:pointer;transition:all 0.15s;}
+.listing-map-btn:hover{background:rgba(160,98,42,0.35);color:var(--pale-gold);}
+.load-more-btn{display:block;margin:0.5rem auto 2rem;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.12em;padding:10px 28px;background:transparent;border:1px solid rgba(200,169,110,0.3);border-radius:3px;color:var(--sandstone);cursor:pointer;transition:all 0.15s;}
+.load-more-btn:hover{background:rgba(200,169,110,0.1);color:var(--pale-gold);}
+.hospital-list{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem;}
+.hospital-card{display:flex;align-items:center;justify-content:space-between;background:rgba(234,217,176,0.04);border:1px solid rgba(200,169,110,0.15);border-radius:3px;padding:1rem 1.25rem;cursor:pointer;transition:border-color 0.2s;}
+.hospital-card:hover{border-color:rgba(58,122,90,0.4);}
+.hospital-name{font-family:'Cinzel',serif;font-size:14px;font-weight:600;color:var(--pale-gold);margin-bottom:4px;}
+.hospital-detail{font-size:13px;color:rgba(234,217,176,0.65);line-height:1.5;}
+.hospital-type{font-size:11px;padding:2px 8px;border:1px solid rgba(58,122,90,0.4);border-radius:2px;color:#9FD4B8;background:rgba(58,122,90,0.1);margin-top:5px;display:inline-block;}
+.purana-panel{background:rgba(139,26,26,0.08);border:1px solid rgba(139,26,26,0.3);border-radius:4px;padding:1.5rem;margin-bottom:2rem;position:relative;overflow:hidden;}
+.purana-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(212,168,67,0.6),transparent);}
+.purana-title{font-family:'Cinzel',serif;font-size:16px;font-weight:600;color:#E8A080;letter-spacing:0.15em;margin-bottom:0.4rem;}
+.purana-tradition{font-style:italic;font-size:13px;color:var(--sandstone);opacity:0.7;margin-bottom:1.2rem;letter-spacing:0.05em;}
+.purana-body{font-size:15px;line-height:1.9;color:var(--aged-paper);}
+.purana-body p{margin-bottom:1rem;}
+.purana-quote{border-left:3px solid rgba(212,168,67,0.4);padding:0.8rem 1.2rem;margin:1rem 0;background:rgba(212,168,67,0.05);font-style:italic;color:var(--pale-gold);font-size:14px;line-height:1.8;}
+.purana-source{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.15em;color:var(--sandstone);opacity:0.6;margin-top:1rem;text-align:right;}
+.karya-panel{background:rgba(58,122,90,0.06);border:1px solid rgba(58,122,90,0.25);border-radius:4px;padding:1.5rem;margin-bottom:2rem;position:relative;}
+.karya-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(58,122,90,0.6),transparent);}
+.karya-title{font-family:'Cinzel',serif;font-size:16px;font-weight:600;color:#9FD4B8;letter-spacing:0.15em;margin-bottom:1.2rem;}
+.karya-site{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(58,122,90,0.15);}
+.karya-site:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.karya-site-name{font-family:'Cinzel',serif;font-size:14px;font-weight:600;color:var(--pale-gold);margin-bottom:0.8rem;padding-bottom:0.5rem;border-bottom:1px solid rgba(58,122,90,0.2);}
+.karya-procedure{font-size:14px;line-height:1.8;color:var(--aged-paper);margin-bottom:0.8rem;}
+.nitya-block{background:rgba(212,168,67,0.06);border:1px solid rgba(212,168,67,0.2);border-radius:3px;padding:1rem 1.25rem;margin:0.8rem 0;}
+.nitya-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.2em;color:var(--muted-gold);text-transform:uppercase;margin-bottom:0.6rem;}
+.nitya-body{font-size:13px;line-height:1.7;color:rgba(234,217,176,0.75);}
+.surprising-block{background:rgba(139,26,26,0.1);border:1px solid rgba(193,68,14,0.3);border-radius:3px;padding:1rem 1.25rem;margin-top:0.8rem;}
+.surprising-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.2em;color:#E8A080;display:block;margin-bottom:0.5rem;text-transform:uppercase;}
+.surprising-text{font-style:italic;font-size:14px;color:rgba(240,208,128,0.85);line-height:1.7;}
+.personalities-panel{background:rgba(83,74,183,0.05);border:1px solid rgba(83,74,183,0.25);border-radius:4px;padding:1.5rem;margin-bottom:2.5rem;position:relative;}
+.personalities-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(83,74,183,0.5),transparent);}
+.personality-card{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid rgba(83,74,183,0.12);}
+.personality-card:last-child{border-bottom:none;padding-bottom:0;}
+.personality-initial{width:46px;height:46px;border-radius:50%;background:rgba(83,74,183,0.2);border:1px solid rgba(83,74,183,0.4);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:16px;font-weight:600;color:#AFA9EC;flex-shrink:0;}
+.personality-name{font-family:'Cinzel',serif;font-size:14px;font-weight:600;color:#AFA9EC;margin-bottom:3px;}
+.personality-role{font-size:12px;color:rgba(175,169,236,0.6);margin-bottom:5px;}
+.personality-desc{font-size:13px;line-height:1.6;color:rgba(234,217,176,0.65);}
+.err-box{max-width:500px;margin:4rem auto;text-align:center;padding:2rem;border:1px solid rgba(193,68,14,0.3);border-radius:4px;background:rgba(193,68,14,0.07);}
+.err-box h3{font-family:'Cinzel',serif;color:#E8A080;margin-bottom:0.8rem;}
+.err-box p{font-size:15px;color:rgba(234,217,176,0.65);line-height:1.6;}
+.footer{text-align:center;padding:2rem;margin-top:2rem;border-top:1px solid rgba(200,169,110,0.1);font-style:italic;font-size:13px;color:rgba(200,169,110,0.35);letter-spacing:0.05em;}
+@media(max-width:640px){.heritage-card{grid-template-columns:44px 1fr;}.heritage-action{display:none;}.nav-search-mini input{width:130px;}.content-wrap{padding:0 1rem;}.action-bar{gap:7px;}.act-btn{padding:8px 12px;font-size:10px;}}
 </style>
 </head>
 <body>
 
-<!-- ── HERO ── -->
 <div id="hero">
   <div class="hero-glow"></div>
-  <div class="hero-ornament">अनन्त · Endless · Infinite</div>
+  <div class="hero-ornament">अनन्त · Discover Ancient India</div>
   <h1 class="hero-title">ANANTHA</h1>
   <p class="hero-meaning">अनन्त — without end</p>
   <p class="hero-subtitle">An Infinite Atlas of India's Living Heritage</p>
-
-  <div class="divider">
-    <div class="divider-line"></div>
-    <span class="divider-lotus">✦</span>
-    <div class="divider-line right"></div>
-  </div>
-
+  <div class="divider"><div class="divider-line"></div><span style="color:var(--sandstone);font-size:18px">✦</span><div class="divider-line right"></div></div>
   <div class="search-container">
-    <input class="search-box" id="heroInput" type="text"
-      placeholder="Enter any city, town or village in India…"
-      onkeydown="if(event.key==='Enter') doSearch(this.value)"/>
-    <button class="search-btn" onclick="doSearch(document.getElementById('heroInput').value)" title="Search">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#F0D080" stroke-width="2" stroke-linecap="round">
-        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-      </svg>
+    <input class="search-box" id="heroInput" type="text" placeholder="Enter any city, town or village in India…" onkeydown="if(event.key==='Enter')doSearch(this.value)"/>
+    <button class="search-btn" onclick="doSearch(document.getElementById('heroInput').value)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#F0D080" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     </button>
   </div>
-
   <div class="quick-chips">
     <span class="q-chip" onclick="doSearch('Hampi')">Hampi</span>
     <span class="q-chip" onclick="doSearch('Kurnool')">Kurnool</span>
     <span class="q-chip" onclick="doSearch('Varanasi')">Varanasi</span>
-    <span class="q-chip" onclick="doSearch('Khajuraho')">Khajuraho</span>
+    <span class="q-chip" onclick="doSearch('Thanjavur')">Thanjavur</span>
     <span class="q-chip" onclick="doSearch('Madurai')">Madurai</span>
     <span class="q-chip" onclick="doSearch('Lepakshi')">Lepakshi</span>
-    <span class="q-chip" onclick="doSearch('Patan Gujarat')">Patan</span>
+    <span class="q-chip" onclick="doSearch('Khajuraho')">Khajuraho</span>
     <span class="q-chip" onclick="doSearch('Mandu')">Mandu</span>
-    <span class="q-chip" onclick="doSearch('Thanjavur')">Thanjavur</span>
+    <span class="q-chip" onclick="doSearch('Patan Gujarat')">Patan</span>
   </div>
-
   <div class="hampi-bg">
     <svg viewBox="0 0 1400 260" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
       <rect x="0" y="240" width="1400" height="20" fill="rgba(200,169,110,0.08)"/>
-      <g fill="rgba(200,169,110,0.12)">
-        <rect x="30" y="200" width="50" height="40"/>
-        <polygon points="55,160 20,200 90,200"/>
-        <polygon points="55,130 30,165 80,165"/>
-        <rect x="46" y="120" width="18" height="15"/>
-        <rect x="50" y="108" width="10" height="14"/>
-      </g>
-      <g fill="rgba(200,169,110,0.16)">
-        <rect x="160" y="180" width="80" height="60"/>
-        <polygon points="200,120 150,180 250,180"/>
-        <polygon points="200,80 160,125 240,125"/>
-        <polygon points="200,52 170,85 230,85"/>
-        <rect x="192" y="34" width="16" height="20"/>
-        <rect x="196" y="22" width="8" height="14"/>
-        <rect x="178" y="175" width="10" height="30"/>
-        <rect x="212" y="175" width="10" height="30"/>
-      </g>
-      <g fill="rgba(200,169,110,0.22)">
-        <rect x="560" y="140" width="140" height="100"/>
-        <rect x="555" y="120" width="150" height="25"/>
-        <rect x="565" y="98" width="130" height="25"/>
-        <rect x="578" y="78" width="104" height="23"/>
-        <rect x="590" y="60" width="80" height="21"/>
-        <rect x="600" y="44" width="60" height="18"/>
-        <rect x="610" y="30" width="40" height="16"/>
-        <rect x="618" y="18" width="24" height="14"/>
-        <rect x="624" y="6" width="12" height="14"/>
-        <rect x="626" y="0" width="8" height="8"/>
-        <rect x="575" y="170" width="14" height="70"/>
-        <rect x="600" y="170" width="14" height="70"/>
-        <rect x="626" y="170" width="14" height="70"/>
-        <rect x="651" y="170" width="14" height="70"/>
-        <rect x="671" y="170" width="14" height="70"/>
-      </g>
-      <g fill="rgba(200,169,110,0.15)">
-        <rect x="820" y="170" width="90" height="70"/>
-        <polygon points="865,110 812,170 918,170"/>
-        <polygon points="865,75 828,115 902,115"/>
-        <polygon points="865,48 836,78 894,78"/>
-        <rect x="858" y="32" width="14" height="18"/>
-        <rect x="862" y="18" width="6" height="16"/>
-      </g>
-      <g fill="rgba(200,169,110,0.11)">
-        <rect x="1060" y="195" width="60" height="45"/>
-        <polygon points="1090,155 1050,195 1130,195"/>
-        <polygon points="1090,125 1060,158 1120,158"/>
-        <rect x="1083" y="110" width="14" height="16"/>
-      </g>
-      <g fill="rgba(200,169,110,0.09)">
-        <ellipse cx="120" cy="242" rx="55" ry="20"/>
-        <ellipse cx="420" cy="245" rx="40" ry="16"/>
-        <ellipse cx="740" cy="248" rx="65" ry="14"/>
-        <ellipse cx="970" cy="244" rx="45" ry="17"/>
-        <ellipse cx="1260" cy="246" rx="50" ry="15"/>
-      </g>
+      <g fill="rgba(200,169,110,0.12)"><rect x="30" y="200" width="50" height="40"/><polygon points="55,160 20,200 90,200"/><polygon points="55,130 30,165 80,165"/><rect x="46" y="120" width="18" height="15"/><rect x="50" y="108" width="10" height="14"/></g>
+      <g fill="rgba(200,169,110,0.16)"><rect x="160" y="180" width="80" height="60"/><polygon points="200,120 150,180 250,180"/><polygon points="200,80 160,125 240,125"/><polygon points="200,52 170,85 230,85"/><rect x="192" y="34" width="16" height="20"/><rect x="196" y="22" width="8" height="14"/><rect x="178" y="175" width="10" height="30"/><rect x="212" y="175" width="10" height="30"/></g>
+      <g fill="rgba(200,169,110,0.22)"><rect x="560" y="140" width="140" height="100"/><rect x="555" y="120" width="150" height="25"/><rect x="565" y="98" width="130" height="25"/><rect x="578" y="78" width="104" height="23"/><rect x="590" y="60" width="80" height="21"/><rect x="600" y="44" width="60" height="18"/><rect x="610" y="30" width="40" height="16"/><rect x="618" y="18" width="24" height="14"/><rect x="624" y="6" width="12" height="14"/><rect x="626" y="0" width="8" height="8"/><rect x="575" y="170" width="14" height="70"/><rect x="600" y="170" width="14" height="70"/><rect x="626" y="170" width="14" height="70"/><rect x="651" y="170" width="14" height="70"/><rect x="671" y="170" width="14" height="70"/></g>
+      <g fill="rgba(200,169,110,0.15)"><rect x="820" y="170" width="90" height="70"/><polygon points="865,110 812,170 918,170"/><polygon points="865,75 828,115 902,115"/><polygon points="865,48 836,78 894,78"/><rect x="858" y="32" width="14" height="18"/><rect x="862" y="18" width="6" height="16"/></g>
+      <g fill="rgba(200,169,110,0.11)"><rect x="1060" y="195" width="60" height="45"/><polygon points="1090,155 1050,195 1130,195"/><polygon points="1090,125 1060,158 1120,158"/><rect x="1083" y="110" width="14" height="16"/></g>
+      <g fill="rgba(200,169,110,0.09)"><ellipse cx="120" cy="242" rx="55" ry="20"/><ellipse cx="420" cy="245" rx="40" ry="16"/><ellipse cx="740" cy="248" rx="65" ry="14"/><ellipse cx="970" cy="244" rx="45" ry="17"/><ellipse cx="1260" cy="246" rx="50" ry="15"/></g>
     </svg>
   </div>
 </div>
 
-<!-- ── LOADING ── -->
 <div id="loading-screen">
   <div class="loading-mandala"></div>
   <div class="loading-text" id="loading-msg">Consulting the ancient scrolls…</div>
 </div>
 
-<!-- ── RESULTS ── -->
 <div id="results-page">
   <nav class="results-nav">
     <div onclick="goHome()" style="cursor:pointer">
@@ -485,144 +215,161 @@ body::before {
     </div>
     <div class="nav-actions">
       <div class="nav-search-mini">
-        <input type="text" id="navInput" placeholder="Search another place…"
-          onkeydown="if(event.key==='Enter') doSearch(this.value)"/>
+        <input type="text" id="navInput" placeholder="Search another place…" onkeydown="if(event.key==='Enter')doSearch(this.value)"/>
         <button class="btn-ghost" onclick="doSearch(document.getElementById('navInput').value)">Go</button>
       </div>
     </div>
   </nav>
   <div id="results-content"></div>
+  <div class="action-bar" id="actionBar" style="display:none">
+    <button class="act-btn" id="btn-hotels" onclick="loadPanel('hotels',this)">🏨 Hotels</button>
+    <button class="act-btn" id="btn-restaurants" onclick="loadPanel('restaurants',this)">🍽 Restaurants</button>
+    <button class="act-btn" id="btn-hospitals" onclick="loadPanel('hospitals',this)">🏥 Hospitals</button>
+    <button class="act-btn purana-btn" id="btn-purana" onclick="loadPanel('purana',this)">📜 Sthala Purana</button>
+    <button class="act-btn karya-btn" id="btn-karya" onclick="loadPanel('karya',this)">🪔 Karya Reeti</button>
+  </div>
+  <div class="content-wrap"><div id="dynamic-panel"></div></div>
   <div class="footer">अनन्त — Anantha · Every place in India holds an infinite story</div>
 </div>
 
 <script>
-const loadingMsgs = [
-  "Consulting the ancient scrolls…",
-  "Tracing the river of history…",
-  "Awakening the stone inscriptions…",
-  "Walking the pilgrim's path…",
-  "Reading the temple carvings…"
-];
+const loadingMsgs=["Consulting the ancient scrolls…","Tracing the river of history…","Awakening the stone inscriptions…","Walking the pilgrim's path…","Reading the temple carvings…"];
+let currentCity='';
+let hotelsPage=1,restaurantsPage=1;
 
-function goHome() {
-  document.getElementById('results-page').style.display = 'none';
-  document.getElementById('hero').style.display = 'flex';
-  document.getElementById('heroInput').value = '';
+function goHome(){
+  document.getElementById('results-page').style.display='none';
+  document.getElementById('hero').style.display='flex';
+  document.getElementById('heroInput').value='';
+  document.getElementById('actionBar').style.display='none';
+  document.getElementById('dynamic-panel').innerHTML='';
+  currentCity='';hotelsPage=1;restaurantsPage=1;
 }
 
-function setLoading(on) {
-  const ls = document.getElementById('loading-screen');
-  if (on) {
-    document.getElementById('loading-msg').textContent = loadingMsgs[Math.floor(Math.random()*loadingMsgs.length)];
-    ls.style.display = 'flex';
-    document.getElementById('hero').style.display = 'none';
-    document.getElementById('results-page').style.display = 'none';
-  } else {
-    ls.style.display = 'none';
-  }
+function setLoading(on){
+  const ls=document.getElementById('loading-screen');
+  if(on){document.getElementById('loading-msg').textContent=loadingMsgs[Math.floor(Math.random()*loadingMsgs.length)];ls.style.display='flex';document.getElementById('hero').style.display='none';document.getElementById('results-page').style.display='none';}
+  else{ls.style.display='none';}
 }
 
-async function doSearch(query) {
-  query = (query || '').trim();
-  if (!query) return;
+async function callAPI(prompt){
+  const r=await fetch('/api/search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:currentCity,prompt})});
+  const data=await r.json();
+  if(!r.ok) throw new Error(data.error||'API error');
+  return data;
+}
+
+function parseJSON(data){
+  if(typeof data==='object'&&!Array.isArray(data)&&data.content===undefined) return data;
+  if(Array.isArray(data)) return data;
+  const txt=(data.content||[]).map(i=>i.text||'').join('');
+  return JSON.parse(txt.replace(/```json|```/g,'').trim());
+}
+
+async function doSearch(query){
+  query=(query||'').trim();if(!query)return;
+  hotelsPage=1;restaurantsPage=1;
   setLoading(true);
-  try {
-    const res = await fetch('/api/search', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query })
-    });
-    const info = await res.json();
+  const prompt=`You are a deep expert on Indian history, archaeology, culture, and heritage. The user is asking about: "${query}" in India.
+Return ONLY a valid JSON object (no markdown, no backticks) with this structure:
+{"found":true,"name":"Official place name","type":"City/Town/Village/Taluk","state":"State name","district":"District name","region":"Geographical region","icon_symbol":"one thematic emoji","sanskrit_name":"Sanskrit Devanagari script name ONLY if it genuinely exists in scriptures or well-known traditional usage — empty string if uncertain","description":"3-sentence engaging cultural description","best_time":"Best months and why","food":["dish1","dish2","dish3"],"famous_for":["item1","item2","item3","item4"],"connectivity":["Nearest airport: X (~Ykm)","Railway: station name","Major highway: NH/SH X"],"nearby_major_cities":["City A (~Xkm)","City B (~Xkm)","City C (~Xkm)"],"history":"2-3 sentence historical paragraph","heritage_sites":[{"rank":1,"name":"Site name","distance_km":0,"type":"Temple/Fort/Cave/etc","era":"dynasty (century)","description":"2 sentences","cultural_significance":"ASI/UNESCO/pilgrimage value","map_query":"google maps search string"}],"personalities":[{"name":"Person name","role":"Poet/Saint/King/Scholar","description":"2 sentences about connection to place"}]}
+Up to 10 heritage_sites nearest to farthest within 40km. Only real documented sites. personalities array: only include if genuinely notable people are associated — else empty array []. If not in India: {"found":false,"name":"${query}"}`;
+
+  try{
+    const r=await fetch('/api/search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query,prompt})});
+    const info=await r.json();
     setLoading(false);
-    if (res.status === 429) { showError(query, false, info.error); return; }
-    if (!res.ok) { showError(query, true, info.error); return; }
-    if (!info.found) { showError(query); } else { renderResults(info); }
-  } catch(e) {
-    setLoading(false);
-    showError(query, true);
-  }
+    if(r.status===429){showError(query,false,info.error);return;}
+    if(!r.ok){showError(query,true,info.error);return;}
+    if(!info.found){showError(query);}else{currentCity=info.name;renderResults(info);}
+  }catch(e){setLoading(false);showError(query,true);}
 }
 
-function showError(query, isNetErr, msg) {
-  document.getElementById('results-page').style.display = 'block';
-  let text = msg || (isNetErr
-    ? 'A network error occurred. Please try again.'
-    : '"' + query + '" could not be identified as a place in India. Try adding the state name or check the spelling.');
-  document.getElementById('results-content').innerHTML = `
-    <div class="content-wrap">
-      <div class="err-box" style="margin-top:4rem">
-        <h3>Not Found</h3>
-        <p>${text}</p>
-        <button class="btn-ghost" style="margin-top:1.5rem" onclick="goHome()">← Back to Search</button>
-      </div>
-    </div>`;
+function showError(query,isNetErr,msg){
+  document.getElementById('results-page').style.display='block';
+  const text=msg||(isNetErr?'A network error occurred. Please try again.':'"'+query+'" could not be identified as a place in India.');
+  document.getElementById('results-content').innerHTML=`<div class="content-wrap"><div class="err-box" style="margin-top:4rem"><h3>Not Found</h3><p>${text}</p><button class="btn-ghost" style="margin-top:1.5rem" onclick="goHome()">← Back</button></div></div>`;
 }
 
-function openMap(q) { window.open('https://www.google.com/maps/search/'+encodeURIComponent(q),'_blank'); }
-function openWiki(n) { window.open('https://en.wikipedia.org/wiki/Special:Search?search='+encodeURIComponent(n+' India heritage'),'_blank'); }
+function openMap(q){window.open('https://www.google.com/maps/search/'+encodeURIComponent(q),'_blank');}
+function openWiki(n){window.open('https://en.wikipedia.org/wiki/Special:Search?search='+encodeURIComponent(n+' India heritage'),'_blank');}
+function starsHTML(n){let s='';for(let i=0;i<5;i++)s+=i<Math.round(n)?'★':'☆';return s+' <span style="opacity:0.55;font-size:11px">('+Number(n).toFixed(1)+')</span>';}
 
-function renderResults(d) {
-  const sites = (d.heritage_sites||[]).slice(0,10);
-  const sitesHTML = sites.map((s,i) => {
-    const dist = s.distance_km===0 ? 'City Centre' : s.distance_km+' km';
-    return `<div class="heritage-card">
-      <div class="heritage-rank">
-        <div class="rank-num">${String(i+1).padStart(2,'0')}</div>
-        <div class="rank-dist">${dist}</div>
-      </div>
-      <div class="heritage-body">
-        <div class="heritage-name">${s.name}</div>
-        <div class="heritage-type-row">
-          <span class="htype-tag">${s.type}</span>
-          <span class="hera-tag">${s.era}</span>
-        </div>
-        <div class="heritage-desc">${s.description}</div>
-        <div class="heritage-significance"><p>✦ ${s.cultural_significance}</p></div>
-      </div>
-      <div class="heritage-action">
-        <button class="hmap-btn" onclick="openMap('${s.map_query.replace(/'/g,"\\'")}')">Open Map ↗</button>
-        <button class="hwiki-btn" onclick="openWiki('${s.name.replace(/'/g,"\\'")}')">Wikipedia ↗</button>
-      </div>
-    </div>`;
-  }).join('');
+async function loadPanel(type,btn){
+  document.querySelectorAll('.act-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const panel=document.getElementById('dynamic-panel');
+  const msgs={hotels:'Finding the finest stays…',restaurants:'Discovering local flavours…',hospitals:'Locating medical centres…',purana:'Unfolding the sacred stories…',karya:'Revealing the sacred procedures…'};
+  panel.innerHTML=`<div class="panel-loading"><div class="panel-spinner"></div>${msgs[type]}</div>`;
+  panel.scrollIntoView({behavior:'smooth',block:'start'});
+  if(type==='hotels'){hotelsPage=1;await loadListings('hotels');}
+  else if(type==='restaurants'){restaurantsPage=1;await loadListings('restaurants');}
+  else if(type==='hospitals') await loadHospitals();
+  else if(type==='purana') await loadPurana();
+  else if(type==='karya') await loadKarya();
+}
 
-  document.getElementById('results-page').style.display = 'block';
-  document.getElementById('results-content').innerHTML = `
-    <div class="city-banner">
-      <div class="city-banner-ornament">${d.region} · ${d.type}</div>
-      <h1>${d.icon_symbol} ${d.name}</h1>
-      <div class="meta-badges">
-        <span class="mbadge state">🏛 ${d.state}</span>
-        <span class="mbadge district">◎ ${d.district} District</span>
-        <span class="mbadge">⏱ Best: ${d.best_time.split(' ').slice(0,4).join(' ')}</span>
-      </div>
-    </div>
-    <div class="content-wrap">
-      <div class="city-desc-block"><p>${d.description}</p></div>
-      <div class="info-grid">
-        <div class="info-tile"><div class="tile-label">State</div><div class="tile-value">${d.state}</div></div>
-        <div class="info-tile"><div class="tile-label">District</div><div class="tile-value">${d.district}</div></div>
-        <div class="info-tile"><div class="tile-label">Region</div><div class="tile-value">${d.region}</div></div>
-        <div class="info-tile"><div class="tile-label">Best Time</div><div class="tile-value">${d.best_time}</div></div>
-      </div>
-      <div class="heritage-section">
-        <div class="section-title">Heritage & Historical Sites — Nearest to Farthest</div>
-        <div class="heritage-list">${sitesHTML}</div>
-      </div>
-      <div class="cards-grid">
-        <div class="dcard"><div class="section-title">Known For</div><ul>${(d.famous_for||[]).map(f=>`<li>${f}</li>`).join('')}</ul></div>
-        <div class="dcard"><div class="section-title">Local Cuisine</div><ul>${(d.food||[]).map(f=>`<li>${f}</li>`).join('')}</ul></div>
-        <div class="dcard"><div class="section-title">Historical Background</div><p>${d.history}</p></div>
-        <div class="dcard"><div class="section-title">Nearby Cities</div><ul>${(d.nearby_major_cities||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div>
-      </div>
-      <div class="dcard" style="margin-bottom:2rem">
-        <div class="section-title">How to Reach</div>
-        <div class="connectivity-tags">${(d.connectivity||[]).map(c=>`<span class="conn-tag">${c}</span>`).join('')}</div>
-      </div>
-    </div>`;
+async function loadListings(type,append=false){
+  const page=type==='hotels'?hotelsPage:restaurantsPage;
+  const prompt=`For the city "${currentCity}" in India, list ${page===1?'the top 10':'the next 10 (page '+page+', different from previous)'} ${type==='hotels'?'hotels sorted by rating and number of reviews — include heritage hotels, chains, and highly-reviewed local stays':'restaurants sorted by popularity among locals and tourists, include famous dhabas and top-rated dining'}. Return ONLY a JSON array: [{"name":"Name","rating":4.5,"reviews":1200,"type":"Budget/Mid-range/Luxury or cuisine","address":"locality","highlights":["feature1","feature2"],"map_query":"${currentCity} hotel/restaurant name google maps search"}]`;
+  try{
+    const data=parseJSON(await callAPI(prompt));
+    const items=Array.isArray(data)?data:[];
+    const panel=document.getElementById('dynamic-panel');
+    const title=type==='hotels'?'🏨 Hotels in '+currentCity:'🍽 Restaurants in '+currentCity;
+    const html=items.map(item=>`<div class="listing-card"><div class="listing-name">${item.name}</div><div class="listing-stars">${starsHTML(item.rating||4)}<span style="opacity:0.4;font-size:11px;margin-left:6px">${item.reviews?(Number(item.reviews)).toLocaleString()+' reviews':''}</span></div><div class="listing-detail">${item.address||''}</div><div class="listing-tags">${(item.highlights||[]).map(h=>`<span class="listing-tag">${h}</span>`).join('')}<span class="listing-tag">${item.type||''}</span></div><button class="listing-map-btn" onclick="openMap('${(item.map_query||item.name+' '+currentCity).replace(/'/g,"\\'")}')">Open in Maps ↗</button></div>`).join('');
+    if(append){const g=panel.querySelector('.listing-grid');if(g)g.insertAdjacentHTML('beforeend',html);}
+    else{panel.innerHTML=`<div class="section-title" style="margin-top:1.5rem">${title}</div><div class="listing-grid">${html}</div><button class="load-more-btn" id="lmBtn">Load 10 More ↓</button>`;}
+    const lmBtn=document.getElementById('lmBtn');
+    if(lmBtn)lmBtn.onclick=()=>loadMore(type);
+  }catch(e){document.getElementById('dynamic-panel').innerHTML=`<p style="color:#E8A080;padding:1rem;font-style:italic">Could not load ${type}. Try again.</p>`;}
+}
+
+async function loadMore(type){
+  if(type==='hotels')hotelsPage++;else restaurantsPage++;
+  const btn=document.getElementById('lmBtn');
+  if(btn){btn.textContent='Loading…';btn.disabled=true;}
+  await loadListings(type,true);
+  const newBtn=document.getElementById('lmBtn');
+  if(newBtn){newBtn.textContent='Load 10 More ↓';newBtn.disabled=false;}
+}
+
+async function loadHospitals(){
+  const prompt=`For "${currentCity}" in India, list the top 5 best-known hospitals (government and private). Return ONLY a JSON array: [{"name":"Hospital Name","type":"Government/Private","speciality":"Multi-speciality/Cardiac/etc","address":"locality","established":"year if known","map_query":"${currentCity} hospital name"}]`;
+  try{
+    const items=parseJSON(await callAPI(prompt));
+    const html=(Array.isArray(items)?items:[]).map(h=>`<div class="hospital-card" onclick="openMap('${(h.map_query||h.name+' hospital '+currentCity).replace(/'/g,"\\'")}')"><div><div class="hospital-name">${h.name}</div><div class="hospital-detail">${h.address||''} ${h.established?'· Est. '+h.established:''}</div><span class="hospital-type">${h.type||''} · ${h.speciality||''}</span></div><button class="listing-map-btn">Maps ↗</button></div>`).join('');
+    document.getElementById('dynamic-panel').innerHTML=`<div class="section-title" style="margin-top:1.5rem">🏥 Hospitals in ${currentCity}</div><div class="hospital-list">${html}</div><p style="font-size:12px;color:rgba(200,169,110,0.4);font-style:italic;margin-bottom:2rem">Click any card to open in Google Maps</p>`;
+  }catch(e){document.getElementById('dynamic-panel').innerHTML=`<p style="color:#E8A080;padding:1rem;font-style:italic">Could not load hospitals. Try again.</p>`;}
+}
+
+async function loadPurana(){
+  const prompt=`You are a scholar of Hindu scriptures and Sthala Mahatmyas. Provide the Sthala Purana of "${currentCity}" in India using only information from actual Hindu scriptures, Puranas, or commentaries in Shankaracharya/Madhvacharya/Ramanujacharya tradition. Translate in English. Return ONLY a JSON object: {"has_purana":true,"tradition":"Shaiva/Vaishnava/Shakta/Smartha","tradition_acharya":"tradition name","scripture_source":"Purana or Mahatmya name","summary":"2-3 paragraph sacred legend","key_extract":"important verse or extract translated in English","significance":"why this place is sacred per scriptures"}. If no purana exists: {"has_purana":false,"message":"explanation"}`;
+  try{
+    const info=parseJSON(await callAPI(prompt));
+    if(!info.has_purana){document.getElementById('dynamic-panel').innerHTML=`<div class="purana-panel"><div class="purana-title">📜 Sthala Purana</div><p style="font-style:italic;color:rgba(234,217,176,0.6);font-size:15px;margin-top:0.5rem">${info.message||'No specific Sthala Purana documented for this place.'}</p></div>`;return;}
+    document.getElementById('dynamic-panel').innerHTML=`<div class="purana-panel"><div class="purana-title">📜 Sthala Purana — ${currentCity}</div><div class="purana-tradition">According to ${info.tradition_acharya} tradition · ${info.tradition} · Source: ${info.scripture_source}</div><div class="purana-body">${(info.summary||'').split('\n').filter(p=>p.trim()).map(p=>`<p>${p}</p>`).join('')}${info.key_extract?`<div class="purana-quote">${info.key_extract}</div>`:''}${info.significance?`<p><strong style="color:var(--sandstone)">Sacred Significance:</strong> ${info.significance}</p>`:''}</div><div class="purana-source">— From ${info.scripture_source}</div></div>`;
+  }catch(e){document.getElementById('dynamic-panel').innerHTML=`<p style="color:#E8A080;padding:1rem;font-style:italic">Could not load Sthala Purana. Try again.</p>`;}
+}
+
+async function loadKarya(){
+  const prompt=`You are an expert on Hindu temple rituals across India. For the major temples/heritage sites in "${currentCity}", provide Karya Reeti (worship procedures for visitors). Return ONLY a JSON array: [{"temple_name":"Temple Name","general_procedure":"What visitors can do — darshan, touching deity allowed/not, abhisheka availability, ticket requirements, dress code, flower offerings etc.","nitya_padhati":{"title":"Nitya Padhati","description":"Special daily ritual, unique offering, or daily puja procedure specific to this temple"},"surprising_fact":"One genuinely surprising or little-known fact about this temple"}]. 3-5 temples maximum. Only include temples you are confident about.`;
+  try{
+    const items=parseJSON(await callAPI(prompt));
+    const html=(Array.isArray(items)?items:[]).map(t=>`<div class="karya-site"><div class="karya-site-name">🛕 ${t.temple_name}</div><div class="karya-procedure">${t.general_procedure}</div>${t.nitya_padhati?`<div class="nitya-block"><div class="nitya-title">✦ ${t.nitya_padhati.title||'Nitya Padhati'}</div><div class="nitya-body">${t.nitya_padhati.description}</div></div>`:''}${t.surprising_fact?`<div class="surprising-block"><span class="surprising-label">✦ Surprising Fact</span><div class="surprising-text">${t.surprising_fact}</div></div>`:''}</div>`).join('');
+    document.getElementById('dynamic-panel').innerHTML=`<div class="karya-panel"><div class="karya-title">🪔 Karya Reeti — Sacred Procedures in ${currentCity}</div>${html}</div>`;
+  }catch(e){document.getElementById('dynamic-panel').innerHTML=`<p style="color:#E8A080;padding:1rem;font-style:italic">Could not load Karya Reeti. Try again.</p>`;}
+}
+
+function renderResults(d){
+  const sites=(d.heritage_sites||[]).slice(0,10);
+  const sitesHTML=sites.map((s,i)=>{const dist=s.distance_km===0?'City Centre':s.distance_km+' km';return `<div class="heritage-card"><div class="heritage-rank"><div class="rank-num">${String(i+1).padStart(2,'0')}</div><div class="rank-dist">${dist}</div></div><div class="heritage-body"><div class="heritage-name">${s.name}</div><div class="heritage-type-row"><span class="htype-tag">${s.type}</span><span class="hera-tag">${s.era}</span></div><div class="heritage-desc">${s.description}</div><div class="heritage-significance"><p>✦ ${s.cultural_significance}</p></div></div><div class="heritage-action"><button class="hmap-btn" onclick="openMap('${s.map_query.replace(/'/g,"\\'")}')">Open Map ↗</button><button class="hwiki-btn" onclick="openWiki('${s.name.replace(/'/g,"\\'")}')">Wikipedia ↗</button></div></div>`;}).join('');
+  const persHTML=(d.personalities&&d.personalities.length>0)?`<div class="personalities-panel"><div class="section-title" style="color:#AFA9EC;border-color:rgba(83,74,183,0.3)">Notable Personalities</div>${d.personalities.map(p=>`<div class="personality-card"><div class="personality-initial">${p.name.charAt(0)}</div><div><div class="personality-name">${p.name}</div><div class="personality-role">${p.role}</div><div class="personality-desc">${p.description}</div></div></div>`).join('')}</div>`:'';
+  document.getElementById('results-page').style.display='block';
+  document.getElementById('actionBar').style.display='flex';
+  document.getElementById('results-content').innerHTML=`<div class="city-banner"><div class="city-banner-ornament">${d.region} · ${d.type}</div><h1>${d.icon_symbol} ${d.name}</h1>${d.sanskrit_name?`<div class="sanskrit-name">${d.sanskrit_name}</div>`:''}<div class="meta-badges"><span class="mbadge state">🏛 ${d.state}</span><span class="mbadge district">◎ ${d.district} District</span><span class="mbadge">⏱ Best: ${(d.best_time||'').split(' ').slice(0,4).join(' ')}</span></div></div><div class="content-wrap"><div class="city-desc-block"><p>${d.description}</p></div><div class="info-grid"><div class="info-tile"><div class="tile-label">State</div><div class="tile-value">${d.state}</div></div><div class="info-tile"><div class="tile-label">District</div><div class="tile-value">${d.district}</div></div><div class="info-tile"><div class="tile-label">Region</div><div class="tile-value">${d.region}</div></div><div class="info-tile"><div class="tile-label">Best Time</div><div class="tile-value">${d.best_time}</div></div></div><div class="heritage-section"><div class="section-title">Heritage & Historical Sites — Nearest to Farthest</div><div class="heritage-list">${sitesHTML}</div></div>${persHTML}<div class="cards-grid"><div class="dcard"><div class="section-title">Known For</div><ul>${(d.famous_for||[]).map(f=>`<li>${f}</li>`).join('')}</ul></div><div class="dcard"><div class="section-title">Local Cuisine</div><ul>${(d.food||[]).map(f=>`<li>${f}</li>`).join('')}</ul></div><div class="dcard"><div class="section-title">Historical Background</div><p>${d.history}</p></div><div class="dcard"><div class="section-title">Nearby Cities</div><ul>${(d.nearby_major_cities||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div></div><div class="dcard" style="margin-bottom:2rem"><div class="section-title">How to Reach</div><div class="connectivity-tags">${(d.connectivity||[]).map(c=>`<span class="conn-tag">${c}</span>`).join('')}</div></div></div>`;
   window.scrollTo(0,0);
 }
 </script>
 </body>
 </html>
-
