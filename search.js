@@ -26,10 +26,10 @@ module.exports = async function handler(req, res) {
   if (!apiKey) return res.status(500).json({ error: 'API key not configured on server.' });
 
   try {
-    const { query } = req.body;
+    const { query, prompt: customPrompt } = req.body;
     if (!query) return res.status(400).json({ error: 'No query provided.' });
 
-    const prompt = `You are a deep expert on Indian history, archaeology, culture, and heritage. The user is asking about: "${query}" in India.
+    const prompt = customPrompt || `You are a deep expert on Indian history, archaeology, culture, and heritage. The user is asking about: "${query}" in India.
 
 Return ONLY a JSON object (no markdown, no preamble, no backticks) with exactly this structure:
 
